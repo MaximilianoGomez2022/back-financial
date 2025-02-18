@@ -14,10 +14,8 @@ app.use(cors({
 // Ruta para obtener noticias
 app.get('/noticias', async (req, res) => {
     try {
-        const response = await newsapi.v2.topHeadlines({
-            sources: 'bbc-news,the-verge',
-            q: 'bitcoin',
-            category: 'business',
+        const response = await newsapi.v2.sources({
+            category: 'technology',
             language: 'en',
             country: 'us'
         });
