@@ -1,46 +1,42 @@
 import express from 'express';
 import cors from 'cors';
-import NewsAPI from 'newsapi';
+import { NewsAPI } from 'newsapi';
+import dotenv from 'dotenv';
 
-import noticiasRouter from './services/noticias.services.js'
+dotenv.config(); // Cargar variables de entorno
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const newsapi = new NewsAPI(process.env.NEWS_API_KEY); // Usar la clave desde variables de entorno
 
 // Configurar CORS
 app.use(cors({
-    origin: ['https://financial-arg.vercel.app'],
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
+    origin: ['http://localhost:3000', 'https://financial-arg.vercel.app']
 }));
 
-// Usa las rutas definidas en el archivo de servicios
-app.use(noticiasRouter);
+// Ruta para obtener noticias
+app.get('/noticias', async (req, res) => {
+    try {
+        const response = await newsapi.v2.topHeadlines({
+            sources: 'bbc-news,the-verge',
+            q: 'bitcoin',
+            category: 'business',
+            language: 'en',
+            country: 'us'
+        });
 
-// Ruta para el home
+        res.json(response);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener noticias' });
+    }
+});
+
+// Ruta de prueba
 app.get('/', (req, res) => {
     res.send('Servidor funcionando');
 });
 
-const newsapi = new NewsAPI('31bca8c94a954f229cc12bdde714cedd');
-// To query /v2/top-headlines
-// All options passed to topHeadlines are optional, but you need to include at least one of them
-newsapi.v2.topHeadlines({
-  sources: 'bbc-news,the-verge',
-  q: 'bitcoin',
-  category: 'business',
-  language: 'en',
-  country: 'us'
-}).then(response => {
-  console.log(response);
-  /*
-    {
-      status: "ok",
-      articles: [...]
-    }
-  */
-});
-
+// Iniciar servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
