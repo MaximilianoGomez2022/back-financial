@@ -14,8 +14,7 @@ app.use(cors({
 app.get('/noticias', async (req, res) => {
     try {
         const response = await newsapi.v2.topHeadlines({
-            country: 'us',
-            category : 'business'
+            country: 'ar'
         });
 
         res.json(response);
