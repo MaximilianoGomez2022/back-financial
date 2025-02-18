@@ -32,3 +32,5 @@ app.get('/noticias', async (req, res) => {
 app.get('/', (req, res) => {
     res.send('Servidor funcionando');
 });
+
+export default app;
