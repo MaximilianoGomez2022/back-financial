@@ -13,7 +13,7 @@ app.use(cors({
 // Ruta para obtener noticias
 app.get('/noticias', async (req, res) => {
     try {
-        const url = `https://newsdata.io/api/1/latest?country=ar&apikey=pub_69496fe5f0d8f101e367d5d01756b70516f45`;
+        const url = `https://newsdata.io/api/1/latest?country=ar&category=business&apikey=pub_69496fe5f0d8f101e367d5d01756b70516f45`;
 
         const response = await fetch(url);
         const data = await response.json();
