@@ -13,13 +13,19 @@ app.use(cors({
 // Ruta para obtener noticias
 app.get('/noticias', async (req, res) => {
     try {
-        const response = await newsapi.v1.sources({
-            country: 'ar'
-        });
+        const url = `https://newsdata.io/api/1/sources?country=ar&apikey=pub_69496fe5f0d8f101e367d5d01756b70516f45`;
 
-        res.json(response);
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Error en la API de noticias');
+        }
+
+        res.json(data);
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener noticias' });
+        console.error('❌ Error al obtener noticias:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
 
