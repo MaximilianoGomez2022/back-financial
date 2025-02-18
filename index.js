@@ -13,7 +13,7 @@ app.use(cors({
 // Ruta para obtener noticias
 app.get('/noticias', async (req, res) => {
     try {
-        const response = await newsapi.v2.topHeadlines({
+        const response = await newsapi.v1.sources({
             country: 'ar'
         });
 
