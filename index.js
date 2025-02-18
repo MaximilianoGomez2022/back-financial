@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 // Configurar CORS
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://financial-arg.vercel.app/noticias']
+    origin: ['http://localhost:3000', 'https://financial-arg.vercel.app/noticias'],
+    methods: ['GET', 'POST'],
 }));
 
 // Usa las rutas definidas en el archivo de servicios
