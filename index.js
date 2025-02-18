@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
 
+const noticiasRouter = require('./services'); // Importa el archivo de servicios
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -9,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({
     origin: ['http://localhost:3000', 'https://financial-arg.vercel.app/noticias']
 }));
+
+// Usa las rutas definidas en el archivo de servicios
+app.use(noticiasRouter);
 
 // Ruta para el home
 app.get('/', (req, res) => {
