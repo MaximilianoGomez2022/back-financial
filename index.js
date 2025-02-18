@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { NewsAPI } from 'newsapi';
+import NewsAPI from 'newsapi';
 
 dotenv.config(); // Cargar variables de entorno
 
