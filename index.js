@@ -3,10 +3,12 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Configurar CORS
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://financial-arg.vercel.app']
+}));
 
 // Ruta para el home
 app.get('/', (req, res) => {
