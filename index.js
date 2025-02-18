@@ -2,8 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import NewsAPI from 'newsapi';
 
-dotenv.config(); // Cargar variables de entorno
-
 const app = express();
 const newsapi = new NewsAPI('31bca8c94a954f229cc12bdde714cedd', { 
     corsProxyUrl: 'https://cors-anywhere.herokuapp.com/'} ); // Usar la clave desde variables de entorno
