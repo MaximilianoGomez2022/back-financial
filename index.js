@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import fetch from 'node-fetch';
 
-const noticiasRouter = require('./services'); // Importa el archivo de servicios
+import noticiasRouter from './services/noticias.services.js'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
