@@ -16,7 +16,6 @@ app.get('/noticias', async (req, res) => {
     try {
         const response = await newsapi.v2.sources({
             category: 'technology',
-            language: 'en',
             country: 'us'
         });
 
