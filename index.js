@@ -14,8 +14,7 @@ app.use(cors({
 // Ruta para obtener noticias
 app.get('/noticias', async (req, res) => {
     try {
-        const response = await newsapi.v2.sources({
-            category: 'technology',
+        const response = await newsapi.v2.topHeadlines({
             country: 'us'
         });
 
