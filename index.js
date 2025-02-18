@@ -1,12 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import { NewsAPI } from 'newsapi';
-import dotenv from 'dotenv';
 
 dotenv.config(); // Cargar variables de entorno
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 const newsapi = new NewsAPI('31bca8c94a954f229cc12bdde714cedd', { 
     corsProxyUrl: 'https://cors-anywhere.herokuapp.com/'} ); // Usar la clave desde variables de entorno
 
@@ -35,9 +33,4 @@ app.get('/noticias', async (req, res) => {
 // Ruta de prueba
 app.get('/', (req, res) => {
     res.send('Servidor funcionando');
-});
-
-// Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
